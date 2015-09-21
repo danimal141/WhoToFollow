@@ -72,6 +72,14 @@ class UserTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let user = self.userForIndexPath(indexPath) else { return }
+        
+        if let url = NSURL(string: user.url) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
