@@ -61,11 +61,12 @@ class UserTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserTableCell", forIndexPath: indexPath)
+        
         if let user = self.userForIndexPath(indexPath) {
-            //let url = NSURL(string: user.avatarUrl)
-            //let data = NSData(contentsOfURL: url!)
+            let url = NSURL(string: user.avatarUrl)
+            let data = NSData(contentsOfURL: url!)
 
-            //cell.imageView?.image = UIImage(data: data!)
+            cell.imageView?.image = UIImage(data: data!)
             cell.textLabel?.text = user.name
         }
         return cell
