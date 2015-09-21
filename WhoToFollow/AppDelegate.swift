@@ -44,3 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+// Error handling
+
+func commonError(error: String, location: String = "\(__FILE__):\(__LINE__)") -> NSError {
+    return NSError(domain: "CommonError", code: -1, userInfo: [NSLocalizedDescriptionKey: "\(location): \(error)"])
+}
