@@ -32,7 +32,8 @@ class User {
     // MARK: - Static methods
 
     static func fetch() -> Observable<[User]> {
-        return self.apiClient.request(path: "users")
+        let randomOffset = String(arc4random() % 500)
+        return self.apiClient.request(path: "users", params: ["since": randomOffset])
             .observeOn(self.apiClient.backgroundScheduler)
             .map { json in
                 guard let json = json as? [AnyObject] else { throw commonError("Cast failed") }
