@@ -13,13 +13,15 @@ import RxSwift
 class ViewController: UIViewController {
 
     var disposeBag = DisposeBag()
+    let users = Variable([User]())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        GithubAPIClient.sharedInstance.request(path: "users")
-            .subscribe(next: { print($0) }).addDisposableTo(self.disposeBag)
+        User.fetch()
+            .subscribeNext { [unowned self] result in self.users.value = result }
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

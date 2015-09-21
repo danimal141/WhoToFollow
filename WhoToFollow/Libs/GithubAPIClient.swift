@@ -34,6 +34,11 @@ class GithubAPIClient: APIClient {
     static let sharedInstance: GithubAPIClient = GithubAPIClient()
 
 
+    // MARK: - Initializers
+
+    private init() {}
+
+
     // MARK: - Instance methods
 
     func request(method: Alamofire.Method = .GET, path: String, params: [String : String] = [:]) -> Observable<AnyObject!> {
