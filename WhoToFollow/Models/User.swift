@@ -32,7 +32,7 @@ class User {
     // MARK: - Static methods
 
     static func fetch() -> Observable<[User]> {
-        let randomOffset = String(arc4random() % 500)
+        let randomOffset = String(arc4random_uniform(500))
 
         return self.apiClient.request(path: "users", params: ["since": randomOffset])
             .observeOn(self.apiClient.backgroundScheduler)

@@ -25,7 +25,7 @@ class UserTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.contentInset.top = 50
+        self.tableView.contentInset.top = 40
 
         guard let control = self.refreshControl else { return }
         control.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())
@@ -35,6 +35,16 @@ class UserTableViewController: UITableViewController {
                 self.users = result
                 control.endRefreshing()
             }.addDisposableTo(self.disposeBag)
+
+        self.tableView.rx_itemDeleted.subscribeNext { [unowned self] indexPath in
+            var data = self.users
+            let nextIndex = Int(arc4random_uniform(18) + 11) // Select from remaining users
+            let prevData = data[indexPath.row]
+
+            data[indexPath.row] = data[nextIndex]
+            data[nextIndex] = prevData
+            self.users = data
+        }.addDisposableTo(self.disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,15 +56,23 @@ class UserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  10
+        return 10
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserTableCell", forIndexPath: indexPath)
         if let user = self.userForIndexPath(indexPath) {
+            //let url = NSURL(string: user.avatarUrl)
+            //let data = NSData(contentsOfURL: url!)
+
+            //cell.imageView?.image = UIImage(data: data!)
             cell.textLabel?.text = user.name
         }
         return cell
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
     }
 
 
