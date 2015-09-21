@@ -26,7 +26,10 @@ class UserTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.contentInset.top = 40
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let navBarHeight = self.navigationController!.navigationBar.frame.size.height
+
+        self.tableView.contentInset.top = statusBarHeight + navBarHeight
 
         guard let control = self.refreshControl else { return }
         control.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())

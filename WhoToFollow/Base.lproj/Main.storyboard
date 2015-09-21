@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GU8-Zr-4Je">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uV1-pF-2T4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--User Table View Controller-->
+        <!--Who to follow-->
         <scene sceneID="LrA-vA-kQS">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="GU8-Zr-4Je" customClass="UserTableViewController" customModule="WhoToFollow" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,11 +28,34 @@
                             <outlet property="delegate" destination="GU8-Zr-4Je" id="8eW-4u-F5m"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Who to follow" id="vPa-8k-dwg"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ikl-If-ksF">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GpO-MZ-9gb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="216"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fDQ-hm-al0">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NrN-fE-1tb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uV1-pF-2T4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bOT-Ub-cFD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GU8-Zr-4Je" kind="relationship" relationship="rootViewController" id="A9L-bJ-Q43"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="452" y="216"/>
         </scene>
