@@ -33,13 +33,13 @@ class User {
 
     static func fetch() -> Observable<[User]> {
         let randomOffset = String(arc4random() % 500)
+
         return self.apiClient.request(path: "users", params: ["since": randomOffset])
             .observeOn(self.apiClient.backgroundScheduler)
             .map { json in
                 guard let json = json as? [AnyObject] else { throw commonError("Cast failed") }
                 return try self.parseJSON(json)
-            }
-            .observeOn(self.apiClient.mainScheduler)
+            }.observeOn(self.apiClient.mainScheduler)
     }
 
     static func parseJSON(json: [AnyObject]) throws -> [User] {

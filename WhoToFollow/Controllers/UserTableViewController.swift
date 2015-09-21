@@ -14,14 +14,27 @@ class UserTableViewController: UITableViewController {
     // MARK: - Properties
 
     let disposeBag = DisposeBag()
-    let users = Variable([User]())
+
+    var users: [User] = [] {
+        didSet { self.tableView.reloadData() }
+    }
+
+
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        User.fetch()
-            .subscribeNext { [unowned self] result in self.users.value = result }
-            .addDisposableTo(disposeBag)
+        self.tableView.contentInset.top = 50
+
+        guard let control = self.refreshControl else { return }
+        control.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())
+            .flatMap {
+                return User.fetch()
+            }.subscribeNext { [unowned self] result in
+                self.users = result
+                control.endRefreshing()
+            }.addDisposableTo(self.disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,27 +42,29 @@ class UserTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return  10
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserTableCell", forIndexPath: indexPath)
+        if let user = self.userForIndexPath(indexPath) {
+            cell.textLabel?.text = user.name
+        }
         return cell
     }
-    */
+
+
+    // MARK: - Instance methods
+
+    func userForIndexPath(indexPath: NSIndexPath) -> User? {
+        if indexPath.section != 0 || self.users.count <= indexPath.item { return nil }
+        return self.users[indexPath.item]
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
