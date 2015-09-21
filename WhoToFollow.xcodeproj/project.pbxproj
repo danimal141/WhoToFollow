@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EA183AC1BAF91740061F8CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA183AB1BAF91740061F8CF /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		1EC1CD9A1BAE830400544356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC1CD991BAE830400544356 /* AppDelegate.swift */; };
 		1EC1CD9C1BAE830400544356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC1CD9B1BAE830400544356 /* ViewController.swift */; };
 		1EC1CD9F1BAE830400544356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1CD9D1BAE830400544356 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EA183AB1BAF91740061F8CF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1EC1CD961BAE830400544356 /* WhoToFollow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoToFollow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC1CD991BAE830400544356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EC1CD9B1BAE830400544356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		1EA183AA1BAF91680061F8CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EA183AB1BAF91740061F8CF /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		1EC1CD8D1BAE830400544356 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		1EC1CD981BAE830400544356 /* WhoToFollow */ = {
 			isa = PBXGroup;
 			children = (
+				1EA183AA1BAF91680061F8CF /* Models */,
 				1EA183A71BAEBF000061F8CF /* Controllers */,
 				1EEF6A9A1BAE91D000796A03 /* Libs */,
 				1EC1CD991BAE830400544356 /* AppDelegate.swift */,
@@ -348,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EA183AC1BAF91740061F8CF /* User.swift in Sources */,
 				1EC1CD9C1BAE830400544356 /* ViewController.swift in Sources */,
 				1EEF6A9E1BAE934900796A03 /* GithubAPIClient.swift in Sources */,
 				1EC1CD9A1BAE830400544356 /* AppDelegate.swift in Sources */,
