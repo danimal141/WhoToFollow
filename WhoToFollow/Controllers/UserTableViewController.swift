@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import SDWebImage
 
 class UserTableViewController: UITableViewController {
 
@@ -61,12 +62,11 @@ class UserTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserTableCell", forIndexPath: indexPath)
-        
+
         if let user = self.userForIndexPath(indexPath) {
             let url = NSURL(string: user.avatarUrl)
-            let data = NSData(contentsOfURL: url!)
 
-            cell.imageView?.image = UIImage(data: data!)
+            cell.imageView?.sd_setImageWithURL(url)
             cell.textLabel?.text = user.name
         }
         return cell
