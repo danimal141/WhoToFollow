@@ -21,7 +21,7 @@ class UserTableViewCell: UITableViewCell {
 
             vModel.name.bindTo(self.nameLabel.rx_text).addDisposableTo(self.disposeBag)
             vModel.avatarUrl.subscribeNext {
-                self.avatarImageView.sd_setImageWithURL($0)
+                self.avatarImageView.sd_setImageWithURL($0, placeholderImage: UIImage(named: "DefaultImage.png"))
             }.addDisposableTo(self.disposeBag)
         }
     }
@@ -37,6 +37,7 @@ class UserTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
