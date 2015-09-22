@@ -18,7 +18,6 @@ class UserTableViewCell: UITableViewCell {
     var viewModel: UserTableViewCellModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-
             vModel.name.bindTo(self.nameLabel.rx_text).addDisposableTo(self.disposeBag)
             vModel.avatarUrl.subscribeNext {
                 self.avatarImageView.sd_setImageWithURL($0, placeholderImage: UIImage(named: "DefaultImage.png"))
@@ -26,10 +25,15 @@ class UserTableViewCell: UITableViewCell {
         }
     }
 
+    static let rowHeight: CGFloat = 80
+
+
     // MARK: - IBOutlets
 
+    @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    
 
     // MARK: - Lifecycles
 
@@ -38,11 +42,9 @@ class UserTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.avatarImageView.frame = self.avatarView.bounds
     }
 
 }

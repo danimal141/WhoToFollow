@@ -77,10 +77,11 @@ class UserTableViewController: UITableViewController {
         if let url = NSURL(string: user.url) {
             UIApplication.sharedApplication().openURL(url)
         }
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        return UserTableViewCell.rowHeight
     }
 
 

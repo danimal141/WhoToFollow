@@ -8,31 +8,26 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="91" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="WhoToFollow" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="495" height="91"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" rowHeight="80" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="WhoToFollow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="495" height="90"/>
+                <rect key="frame" x="0.0" y="0.0" width="495" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU3-NA-CLh" userLabel="Container View">
-                        <rect key="frame" x="0.0" y="0.0" width="495" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="495" height="79"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oF-n8-ody">
-                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oF-n8-ody" userLabel="Avatar View">
+                                <rect key="frame" x="0.0" y="-1" width="80" height="81"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMd-LR-1MV">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="81"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="1oR-SF-Y7c"/>
-                                            <constraint firstAttribute="height" constant="80" id="DP8-FW-bS4"/>
-                                            <constraint firstAttribute="width" secondItem="RMd-LR-1MV" secondAttribute="height" multiplier="1:1" id="Wbc-D4-aAa"/>
+                                            <constraint firstAttribute="width" constant="80" id="0Lw-gT-Gw7"/>
+                                            <constraint firstAttribute="width" secondItem="RMd-LR-1MV" secondAttribute="height" multiplier="1:1" id="Zlh-js-veq"/>
+                                            <constraint firstAttribute="height" constant="80" id="bfF-3q-73A"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Wbc-D4-aAa"/>
-                                            </mask>
-                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -45,7 +40,7 @@
                                     <constraint firstAttribute="bottom" secondItem="RMd-LR-1MV" secondAttribute="bottom" id="x5g-GC-xoI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="um7-gk-5kW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="um7-gk-5kW">
                                 <rect key="frame" x="100" y="30" width="8" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -60,6 +55,11 @@
                             <constraint firstItem="um7-gk-5kW" firstAttribute="centerY" secondItem="ZU3-NA-CLh" secondAttribute="centerY" id="csK-3d-dwd"/>
                             <constraint firstItem="um7-gk-5kW" firstAttribute="leading" secondItem="7oF-n8-ody" secondAttribute="trailing" constant="20" id="tqF-VL-79q"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="coV-De-Q0m"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <constraints>
@@ -71,6 +71,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="RMd-LR-1MV" id="Ca1-yD-8nU"/>
+                <outlet property="avatarView" destination="7oF-n8-ody" id="nNH-cp-6tm"/>
                 <outlet property="imageView" destination="RMd-LR-1MV" id="SPt-G7-zuK"/>
                 <outlet property="nameLabel" destination="um7-gk-5kW" id="8C9-g7-gWm"/>
             </connections>
