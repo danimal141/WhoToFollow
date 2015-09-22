@@ -66,7 +66,7 @@ class UserTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! UserTableViewCell
 
         if let user = self.userForIndexPath(indexPath) {
-            cell.nameLabel.text = user.name
+            cell.viewModel = UserTableViewCellModel(model: user)
         }
         return cell
     }
@@ -80,7 +80,7 @@ class UserTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        return 80
     }
 
 
