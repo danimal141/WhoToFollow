@@ -8,9 +8,9 @@
 
 import UIKit
 import RxSwift
-import SDWebImage
+import SafariServices
 
-class UserTableViewController: UITableViewController {
+class UserTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     // MARK: - Properties
 
@@ -75,7 +75,13 @@ class UserTableViewController: UITableViewController {
         guard let user = self.userForIndexPath(indexPath) else { return }
         
         if let url = NSURL(string: user.url) {
-            UIApplication.sharedApplication().openURL(url)
+            if #available(iOS 9.0, *) {
+                let safari = SFSafariViewController(URL: url)
+                safari.delegate = self
+                self.presentViewController(safari, animated: true, completion: nil)
+            } else {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
         self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
