@@ -20,14 +20,6 @@ class GithubAPIClient: APIClient {
 
     let scheme = "https"
     let host: String = "api.github.com"
-    let mainScheduler: SerialDispatchQueueScheduler = MainScheduler.sharedInstance
-    let backgroundScheduler: ImmediateSchedulerType = {
-        let operationQueue = NSOperationQueue()
-        operationQueue.maxConcurrentOperationCount = 2
-        operationQueue.qualityOfService = NSQualityOfService.UserInitiated
-
-        return OperationQueueScheduler(operationQueue: operationQueue)
-    }()
 
     private let manager = Alamofire.Manager.sharedInstance
 

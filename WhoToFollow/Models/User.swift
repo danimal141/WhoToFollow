@@ -35,11 +35,11 @@ class User {
         let randomOffset = String(arc4random_uniform(500))
 
         return self.apiClient.request(path: "users", params: ["since": randomOffset])
-            .observeOn(self.apiClient.backgroundScheduler)
+            .observeOn(Dependencies.sharedInstance.backgroundScheduler)
             .map { json in
                 guard let json = json as? [AnyObject] else { throw commonError("Cast failed") }
                 return try self.parseJSON(json)
-            }.observeOn(self.apiClient.mainScheduler)
+            }.observeOn(Dependencies.sharedInstance.mainScheduler)
     }
 
     static func parseJSON(json: [AnyObject]) throws -> [User] {
