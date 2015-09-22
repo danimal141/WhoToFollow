@@ -44,7 +44,7 @@ class UserTableViewController: UITableViewController, SFSafariViewControllerDele
             let nextIndex = Int(arc4random_uniform(18) + 11) // Select from remaining users
             let prevData = data[indexPath.row]
 
-            data[indexPath.row] = data[nextIndex]
+            data[indexPath.item] = data[nextIndex]
             data[nextIndex] = prevData
             self.users = data
         }.addDisposableTo(self.disposeBag)
