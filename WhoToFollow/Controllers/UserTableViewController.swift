@@ -15,10 +15,11 @@ class UserTableViewController: UITableViewController {
     // MARK: - Properties
 
     let disposeBag = DisposeBag()
-
     var users: [User] = [] {
         didSet { self.tableView.reloadData() }
     }
+
+    private var cellIdentifier: String!
 
 
     // MARK: - Lifecycles
@@ -26,10 +27,8 @@ class UserTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let navBarHeight = self.navigationController!.navigationBar.frame.size.height
-
-        self.tableView.contentInset.top = statusBarHeight + navBarHeight
+        self.adjustContentInsetTop()
+        self.registerCell("UserTableViewCell", identifier: "UserTableViewCell")
 
         guard let control = self.refreshControl else { return }
         control.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())
@@ -64,13 +63,10 @@ class UserTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserTableCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! UserTableViewCell
 
         if let user = self.userForIndexPath(indexPath) {
-            let url = NSURL(string: user.avatarUrl)
-
-            cell.imageView?.sd_setImageWithURL(url)
-            cell.textLabel?.text = user.name
+            cell.nameLabel.text = user.name
         }
         return cell
     }
@@ -84,15 +80,29 @@ class UserTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        return 100
     }
 
 
     // MARK: - Instance methods
 
-    func userForIndexPath(indexPath: NSIndexPath) -> User? {
+    private func userForIndexPath(indexPath: NSIndexPath) -> User? {
         if indexPath.section != 0 || self.users.count <= indexPath.item { return nil }
         return self.users[indexPath.item]
+    }
+
+    private func adjustContentInsetTop() {
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let navBarHeight = self.navigationController!.navigationBar.frame.size.height
+
+        self.tableView.contentInset.top = statusBarHeight + navBarHeight
+    }
+
+    private func registerCell(nibName: String, identifier: String) {
+        let nib = UINib(nibName: nibName, bundle: nil)
+
+        self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
+        self.cellIdentifier = identifier
     }
 
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="111" id="KGk-i7-Jjw" customClass="UserTableViewCell" customModule="WhoToFollow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="111"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="495" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZU3-NA-CLh" userLabel="Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="495" height="110"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oF-n8-ody">
+                                <rect key="frame" x="10" y="15" width="80" height="80"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMd-LR-1MV">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="1oR-SF-Y7c"/>
+                                            <constraint firstAttribute="height" constant="80" id="DP8-FW-bS4"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="RMd-LR-1MV" firstAttribute="top" secondItem="7oF-n8-ody" secondAttribute="top" id="RF8-Xg-ykn"/>
+                                    <constraint firstItem="RMd-LR-1MV" firstAttribute="leading" secondItem="7oF-n8-ody" secondAttribute="leading" id="RfA-xr-8Eu"/>
+                                    <constraint firstAttribute="trailing" secondItem="RMd-LR-1MV" secondAttribute="trailing" id="RrC-cd-jxU"/>
+                                    <constraint firstAttribute="width" constant="80" id="Uwt-M7-rrR"/>
+                                    <constraint firstAttribute="height" constant="80" id="bhP-s7-A1Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="RMd-LR-1MV" secondAttribute="bottom" id="x5g-GC-xoI"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="um7-gk-5kW">
+                                <rect key="frame" x="110" y="45" width="8" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7oF-n8-ody" firstAttribute="centerY" secondItem="ZU3-NA-CLh" secondAttribute="centerY" id="XyG-6Y-wqu"/>
+                            <constraint firstItem="7oF-n8-ody" firstAttribute="leading" secondItem="ZU3-NA-CLh" secondAttribute="leading" constant="10" id="Zqo-cF-Cgw"/>
+                            <constraint firstItem="um7-gk-5kW" firstAttribute="centerY" secondItem="ZU3-NA-CLh" secondAttribute="centerY" id="csK-3d-dwd"/>
+                            <constraint firstItem="um7-gk-5kW" firstAttribute="leading" secondItem="7oF-n8-ody" secondAttribute="trailing" constant="20" id="tqF-VL-79q"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ZU3-NA-CLh" secondAttribute="trailing" id="Hko-h1-1hi"/>
+                    <constraint firstItem="ZU3-NA-CLh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bov-HY-Y9J"/>
+                    <constraint firstItem="ZU3-NA-CLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iSi-Da-0i7"/>
+                    <constraint firstAttribute="bottom" secondItem="ZU3-NA-CLh" secondAttribute="bottom" priority="750" id="m23-fG-P20"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="RMd-LR-1MV" id="Ca1-yD-8nU"/>
+                <outlet property="imageView" destination="RMd-LR-1MV" id="SPt-G7-zuK"/>
+                <outlet property="nameLabel" destination="um7-gk-5kW" id="8C9-g7-gWm"/>
+            </connections>
+            <point key="canvasLocation" x="558.5" y="160.5"/>
+        </tableViewCell>
+    </objects>
+</document>
