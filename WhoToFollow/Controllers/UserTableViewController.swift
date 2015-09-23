@@ -30,24 +30,7 @@ class UserTableViewController: UITableViewController, SFSafariViewControllerDele
         self.adjustContentInsetTop()
         self.registerCell("UserTableViewCell", identifier: "UserTableViewCell")
 
-        guard let control = self.refreshControl else { return }
-        control.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())
-            .flatMap {
-                return User.fetch()
-            }.subscribeNext { [unowned self] result in
-                self.users = result
-                control.endRefreshing()
-            }.addDisposableTo(self.disposeBag)
-
-        self.tableView.rx_itemDeleted.subscribeNext { [unowned self] indexPath in
-            var data = self.users
-            let nextIndex = Int(arc4random_uniform(18) + 11) // Select from remaining users
-            let prevData = data[indexPath.row]
-
-            data[indexPath.item] = data[nextIndex]
-            data[nextIndex] = prevData
-            self.users = data
-        }.addDisposableTo(self.disposeBag)
+        self.subscribe()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,27 +54,31 @@ class UserTableViewController: UITableViewController, SFSafariViewControllerDele
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let user = self.userForIndexPath(indexPath) else { return }
-        
-        if let url = NSURL(string: user.url) {
-            if #available(iOS 9.0, *) {
-                let safari = SFSafariViewController(URL: url)
-                safari.delegate = self
-                self.presentViewController(safari, animated: true, completion: nil)
-            } else {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        }
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    }
-
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UserTableViewCell.rowHeight
     }
 
 
     // MARK: - Instance methods
+
+    private func subscribe() {
+        [
+            self.refreshControl!.rx_controlEvents(.ValueChanged).startWith({ print("Start loading...") }())
+                .flatMap { return User.fetch() }
+                .subscribeNext { [unowned self] result in
+                    self.users = result
+                    self.refreshControl!.endRefreshing()
+                },
+
+            self.tableView.rx_itemDeleted.subscribeNext { [unowned self] indexPath in
+                self.switchUserForIndexPath(indexPath)
+            },
+
+            self.tableView.rx_itemSelected.subscribeNext { [unowned self] indexPath in
+                self.showUserProfile(indexPath)
+            }
+        ].forEach { $0.addDisposableTo(self.disposeBag) }
+    }
 
     private func userForIndexPath(indexPath: NSIndexPath) -> User? {
         if indexPath.section != 0 || self.users.count <= indexPath.item { return nil }
@@ -110,6 +97,31 @@ class UserTableViewController: UITableViewController, SFSafariViewControllerDele
 
         self.tableView.registerNib(nib, forCellReuseIdentifier: identifier)
         self.cellIdentifier = identifier
+    }
+
+    private func switchUserForIndexPath(indexPath: NSIndexPath) {
+        var data = self.users
+        let nextIndex = Int(arc4random_uniform(18) + 11) // Select from remaining users
+        let prevData = data[indexPath.row]
+
+        data[indexPath.item] = data[nextIndex]
+        data[nextIndex] = prevData
+        self.users = data
+    }
+
+    private func showUserProfile(indexPath: NSIndexPath) {
+        guard let user = self.userForIndexPath(indexPath) else { return }
+        guard let url = NSURL(string: user.url) else { return }
+
+        if #available(iOS 9.0, *) {
+            let safari = SFSafariViewController(URL: url)
+            safari.delegate = self
+            self.presentViewController(safari, animated: true, completion: nil)
+        } else {
+            UIApplication.sharedApplication().openURL(url)
+        }
+
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
 
 
