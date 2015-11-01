@@ -10,11 +10,7 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
-protocol APIClient: class {
-    func request(method: Alamofire.Method, path: String, params: [String: String]) -> Observable<AnyObject!>
-}
-
-class GithubAPIClient: APIClient {
+class GithubAPIClient {
 
     // MARK: - Properties
 
