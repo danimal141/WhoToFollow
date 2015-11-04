@@ -15,11 +15,11 @@ class GithubAPIClient {
     // MARK: - Properties
 
     let scheme = "https"
-    let host: String = "api.github.com"
+    let host = "api.github.com"
 
     private let manager = Alamofire.Manager.sharedInstance
 
-    static let sharedInstance: GithubAPIClient = GithubAPIClient()
+    static let sharedInstance = GithubAPIClient()
 
 
     // MARK: - Initializers

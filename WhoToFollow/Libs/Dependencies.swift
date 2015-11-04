@@ -12,7 +12,7 @@ class Dependencies {
 
     // MARK: - Properties
 
-    let mainScheduler: SerialDispatchQueueScheduler = MainScheduler.sharedInstance
+    let mainScheduler = MainScheduler.sharedInstance
     let backgroundScheduler: ImmediateSchedulerType = {
         let operationQueue = NSOperationQueue()
         operationQueue.maxConcurrentOperationCount = 2
