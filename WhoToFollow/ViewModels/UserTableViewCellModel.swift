@@ -14,7 +14,7 @@ class UserTableViewCellModel {
     
     let model: Variable<User>
     let name: Observable<String>
-    let avatarUrl: Observable<NSURL>
+    let avatarUrl: Observable<NSURL?>
 
     let disposeBag = DisposeBag()
 
@@ -23,8 +23,8 @@ class UserTableViewCellModel {
 
     init(model: User) {
         self.model = Variable(model)
-        self.name = self.model.map { return $0.name }
-        self.avatarUrl = self.model.map { return NSURL(string: $0.avatarUrl)! }
+        self.name = self.model.map { $0.name }
+        self.avatarUrl = self.model.map { NSURL(string: $0.avatarUrl) }
     }
 
 }

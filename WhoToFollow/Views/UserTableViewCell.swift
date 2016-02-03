@@ -19,10 +19,13 @@ class UserTableViewCell: UITableViewCell {
     var viewModel: UserTableViewCellModel? {
         didSet {
             guard let vModel = self.viewModel else { return }
-            vModel.name.bindTo(self.nameLabel.rx_text).addDisposableTo(self.disposeBag)
-            vModel.avatarUrl.subscribeNext {
-                self.avatarImageView.sd_setImageWithURL($0, placeholderImage: UIImage(named: "DefaultImage.png"))
-            }.addDisposableTo(self.disposeBag)
+            [
+                vModel.name.bindTo(self.nameLabel.rx_text),
+
+                vModel.avatarUrl.subscribeNext { [weak self] in
+                    self?.avatarImageView.sd_setImageWithURL($0, placeholderImage: UIImage(named: "DefaultImage.png"))
+                },
+            ].forEach { $0.addDisposableTo(self.disposeBag) }
         }
     }
 

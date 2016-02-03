@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -40,8 +40,8 @@
                                     <constraint firstAttribute="bottom" secondItem="RMd-LR-1MV" secondAttribute="bottom" id="x5g-GC-xoI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="um7-gk-5kW">
-                                <rect key="frame" x="100" y="30" width="8" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="um7-gk-5kW">
+                                <rect key="frame" x="100" y="40" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,15 +51,9 @@
                         <constraints>
                             <constraint firstItem="7oF-n8-ody" firstAttribute="centerY" secondItem="ZU3-NA-CLh" secondAttribute="centerY" id="XyG-6Y-wqu"/>
                             <constraint firstItem="7oF-n8-ody" firstAttribute="leading" secondItem="ZU3-NA-CLh" secondAttribute="leading" id="Zqo-cF-Cgw"/>
-                            <constraint firstAttribute="height" constant="80" id="coV-De-Q0m"/>
                             <constraint firstItem="um7-gk-5kW" firstAttribute="centerY" secondItem="ZU3-NA-CLh" secondAttribute="centerY" id="csK-3d-dwd"/>
                             <constraint firstItem="um7-gk-5kW" firstAttribute="leading" secondItem="7oF-n8-ody" secondAttribute="trailing" constant="20" id="tqF-VL-79q"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="coV-De-Q0m"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <constraints>

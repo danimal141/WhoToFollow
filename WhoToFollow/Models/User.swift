@@ -36,17 +36,16 @@ class User {
         return self.apiClient.request(path: "users", params: ["since": randomOffset])
             .observeOn(Dependencies.sharedInstance.backgroundScheduler)
             .map { json in
-                guard let json = json as? [AnyObject] else { throw commonError("Cast failed") }
-                return try self.parseJSON(json)
+                guard let json = json as? [AnyObject] else { fatalError("Cast failed") }
+                return self.parseJSON(json)
             }.observeOn(Dependencies.sharedInstance.mainScheduler)
     }
 
-    static func parseJSON(json: [AnyObject]) throws -> [User] {
-        return try json.map { result in
-            guard let name = result["login"] as? String else { throw commonError("Parse error") }
-            guard let url = result["html_url"] as? String else { throw commonError("Parse error") }
-            guard let avatarUrl = result["avatar_url"] as? String else { throw commonError("Parse error") }
-
+    static func parseJSON(json: [AnyObject]) -> [User] {
+        return json.map { result in
+            guard let name = result["login"] as? String else { fatalError("Parse error") }
+            guard let url = result["html_url"] as? String else { fatalError("Parse error") }
+            guard let avatarUrl = result["avatar_url"] as? String else { fatalError("Parse error") }
             return User(name: name, url: url, avatarUrl: avatarUrl)
         }
     }
